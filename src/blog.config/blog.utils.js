@@ -4,3 +4,8 @@ export const limitedName = (input, len = 25) => {
     }
     return input
 }
+
+
+export const blogApis = {
+    getAllBlogs: 'https://my-json-server.typicode.com/nitin1259/mockingBlogs/blogs',
+}

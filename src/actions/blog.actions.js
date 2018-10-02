@@ -1,4 +1,4 @@
-import { getRequest } from "../api/api.request";
+import { getRequest, postRequest } from "../api/api.request";
 
 export function blogHasError(bool) {
     return {
@@ -30,15 +30,7 @@ export function blogFetchFromDataSource(url) {
                 dispatch(blogIsLoading(false)); return res;
             })
             .then(blogs => {
-                const blogFormatedData = blogs.map(el => {
-                    return {
-                        id: el.id,
-                        title: el.title,
-                        author: 'martin luther',
-                        content: el.body
-                    }
-                })
-                dispatch(blogFetchData(blogFormatedData))
+                dispatch(blogFetchData(blogs))
             })
             .catch(() => {
                 dispatch(blogHasError(true))

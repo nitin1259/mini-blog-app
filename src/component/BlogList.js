@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { limitedName } from '../blog.config/blog.utils';
+import { limitedName, blogApis } from '../blog.config/blog.utils';
 import { getRequest } from '../api/api.request';
 import { connect } from 'react-redux';
 import { blogFetchFromDataSource } from '../actions/blog.actions'
@@ -15,7 +15,7 @@ class BlogList extends Component {
     }
 
     componentDidMount() {
-        const url = 'https://jsonplaceholder.typicode.com/posts'
+        const url = blogApis.getAllBlogs;
         this.props.fetchData(url);
     }
 

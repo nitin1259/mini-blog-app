@@ -8,3 +8,18 @@ export const getRequest = async (url) => {
         }
     });
 }
+
+
+export const postRequest = async (url, payload) => {
+    return await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(payload)
+    })
+        .then(res => {
+            if (res.ok) {
+                return res.json();
+            } else {
+                throw new Error(res);
+            }
+        });
+}

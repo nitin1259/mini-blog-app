@@ -8,8 +8,9 @@ class Home extends Component {
       <div className="App">
         <h1>Welcome to Mini blog Application</h1>
         <div>
-          {/* <BlogForm /> */}
-          <BlogList />
+          {/* <BlogList /> */}
+          <BlogForm />
+          
         </div>
       </div>
     );

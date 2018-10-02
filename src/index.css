@@ -3,6 +3,7 @@ body, html {
   background-color: rgba(0,0,0,.018);
   color: rgba(0,0,0,.75);
   font-family: 'Nunito';
+  align-items: center;
 }
 
 .blogListElement{
@@ -34,4 +35,28 @@ body, html {
 
 ul {
   list-style: none;
+}
+
+.blog-form-div{
+  margin: 10px 20px 20px 20px;
+}
+
+.input-details{
+  margin: 1% 2%;
+  padding: 5px;
+  width: 40%;
+  background-color: azure;
+}
+
+.textArea-height{
+  height: 200px;
+}
+
+.btn-blog-submit{
+  position: relative;
+  float: right;
+  background-color: darkgreen;
+  width: 140px;
+  height: 40px;
+  font-size: 30px;
 }

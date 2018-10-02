@@ -1,7 +1,7 @@
 export const blogHasError = (state = false, action) => {
     switch (action.type) {
         case 'BLOG_HAS_ERROR':
-            return action.blogHasError
+            return action.hasError
         default:
             return state
     }
