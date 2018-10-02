@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import blogData from '../api/data'
 import { limitedName } from '../blog.config/blog.utils';
 import { getRequest } from '../api/api.request';
+import { connect } from 'react-redux';
+import { blogFetchFromDataSource } from '../actions/blog.actions'
 
 
-export default class BlogList extends Component {
+class BlogList extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -23,7 +25,6 @@ export default class BlogList extends Component {
         const blogList = await getRequest(url).then(response => {
             return response
         })
-        console.log(typeof blogList);
         this.formatData(blogList);
     }
 
@@ -37,15 +38,16 @@ export default class BlogList extends Component {
             }
         })
 
-        this.setState({ isLoading: false, blogData: blogFormatedData })
+        // this.setState({ isLoading: false, blogData: blogFormatedData })
+        this.props.blogFetchFromDataSource(blogFormatedData)
     }
 
     render() {
-        const data = this.state.blogData;
-        if (this.state.isLoading) {
+        const data = this.props.blogList;
+        if (this.props.isLoading) {
             return (<div>Loading...</div>)
         }
-        if (this.state.hasError) {
+        if (this.props.hasError) {
             return (<div>Sorry ! there is an error while loading data..</div>)
         }
         return (
@@ -69,3 +71,20 @@ export default class BlogList extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        isLoading: state.isLoading,
+        hasError: state.blogHasError,
+        blogList: state.blogs
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        blogFetchFromDataSource: (url) => dispatch(blogFetchFromDataSource(url))
+    }
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BlogList);

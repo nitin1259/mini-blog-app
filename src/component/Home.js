@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './Home.css';
 import BlogForm from './BlogForm';
 import BlogList from './BlogList';
 
