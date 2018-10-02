@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import blogData from '../api/data'
 import { limitedName } from '../blog.config/blog.utils';
 import { getRequest } from '../api/api.request';
 import { connect } from 'react-redux';
@@ -13,33 +12,11 @@ class BlogList extends Component {
             isLoading: true,
             hasError: false
         }
-        this.fetchData = this.fetchData.bind(this)
     }
 
     componentDidMount() {
         const url = 'https://jsonplaceholder.typicode.com/posts'
-        this.fetchData(url);
-    }
-
-    async fetchData(url) {
-        const blogList = await getRequest(url).then(response => {
-            return response
-        })
-        this.formatData(blogList);
-    }
-
-    formatData(blogList) {
-        const blogFormatedData = blogList.map(el => {
-            return {
-                id: el.id,
-                title: el.title,
-                author: 'martin luther',
-                content: el.body
-            }
-        })
-
-        // this.setState({ isLoading: false, blogData: blogFormatedData })
-        this.props.blogFetchFromDataSource(blogFormatedData)
+        this.props.fetchData(url);
     }
 
     render() {
@@ -82,7 +59,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        blogFetchFromDataSource: (url) => dispatch(blogFetchFromDataSource(url))
+        fetchData: (url) => dispatch(blogFetchFromDataSource(url))
     }
 
 }
